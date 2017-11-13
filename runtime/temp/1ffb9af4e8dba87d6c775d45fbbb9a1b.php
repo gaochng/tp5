@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:64:"E:\php\tp5demo\public/../application/index\view\index\index.html";i:1510039667;s:66:"E:\php\tp5demo\public/../application/index\view\common\layout.html";i:1510038073;s:66:"E:\php\tp5demo\public/../application/index\view\common\header.html";i:1510039512;s:65:"E:\php\tp5demo\public/../application/index\view\common\right.html";i:1510038093;s:66:"E:\php\tp5demo\public/../application/index\view\common\footer.html";i:1510038091;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:64:"E:\php\tp5demo\public/../application/index\view\index\index.html";i:1510039667;s:66:"E:\php\tp5demo\public/../application/index\view\common\layout.html";i:1510038073;s:66:"E:\php\tp5demo\public/../application/index\view\common\header.html";i:1510041367;s:65:"E:\php\tp5demo\public/../application/index\view\common\right.html";i:1510041670;s:66:"E:\php\tp5demo\public/../application/index\view\common\footer.html";i:1510038091;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -142,7 +142,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="right">
         <!--右侧各种广告-->

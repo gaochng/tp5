@@ -17,8 +17,16 @@
     <link id="beyond-link" href="__PUBLIC__style/beyond.css" rel="stylesheet" type="text/css">
     <link href="__PUBLIC__style/demo.css" rel="stylesheet">
     <link href="__PUBLIC__style/typicons.css" rel="stylesheet">
-    <link href="__PUBLIC__style/animate.css" rel="stylesheet">
+    <link href="__PUBLIC__style/animate.css" rel="stylesheet"> 
+    <link href="__PUBLIC__style/file.css" rel="stylesheet"> 
 
+
+    <!--Basic Scripts-->
+    <script src="__PUBLIC__js/jquery_002.js"></script>
+    <script src="__PUBLIC__js/bootstrap.js"></script>
+    <script src="__PUBLIC__js/jquery.js"></script>
+    <script src="__PLUGIN__ueditor/ueditor.config.js"></script>
+    <script src="__PLUGIN__ueditor/ueditor.all.min.js"></script>
 </head>
 <body>
 {include file="common/header" /}
@@ -33,13 +41,29 @@
     </div>
 </div>
 
-<!--Basic Scripts-->
-<script src="__PUBLIC__js/jquery_002.js"></script>
-<script src="__PUBLIC__js/bootstrap.js"></script>
-<script src="__PUBLIC__js/jquery.js"></script>
+
 <!--Beyond Scripts-->
 <script src="__PUBLIC__js/beyond.js"></script>
+<!-- ueditor -->
 
+
+<script type="text/javascript">
+
+
+
+    //文章缩略图,实时显示
+    function showPreview(source){
+        var file = source.files[0];  
+        var fr = new FileReader();  
+        fr.onloadend = function(e) {  
+            document.getElementById("portrait").src = e.target.result;  
+        };  
+        fr.readAsDataURL(file); 
+    }
+
+    
+    
+</script>
 
 </body>
 </html>

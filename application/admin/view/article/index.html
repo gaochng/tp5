@@ -1,0 +1,142 @@
+<div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                                        <li>
+                        <a href="#">系统</a>
+                    </li>
+                    <li class="active">文章管理</li>
+                    </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+                    
+<button type="button" tooltip="添加文章" class="btn btn-sm btn-azure btn-addon" onClick="addAdmin()"> <i class="fa fa-plus"></i> Add
+</button>
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-body" style="float: left; width: 100%;">
+                <div class="flip-scroll" >
+                    <table class="table table-bordered table-hover">
+                        <thead class="">
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">标题</th>
+                                <th class="text-center">作者</th>
+                                <th class="text-center">介绍</th>
+                                <th class="text-center">关键字</th>
+                                <th class="text-center">缩略图</th>
+                                <th class="text-center">是否推荐</th>
+                                <th class="text-center">添加时间</th>
+                                <th class="text-center">栏目</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {volist name='list' id='vo'}
+                               <tr>
+                                    <td align="center">{$vo.id}</td>
+                                    <td align="center">
+                                        {if condition="strlen($vo['title']) > 16"}
+                                            {$vo.title|msubstr=0,16,'utf-8',false}...
+                                        {else /} 
+                                            {$vo.title}
+                                        {/if}
+                                    </td>
+                                    <td align="center">{$vo.author}</td>
+                                    <td align="center">
+                                        {if condition="strlen($vo['desc']) > 16"}
+                                            {$vo.desc|msubstr=0,16,'utf-8',false}...
+                                        {else /} 
+                                            {$vo.desc}
+                                        {/if}
+                                    </td>
+                                    <td align="center">{$vo.keywords}</td>
+                                    <td align="center">
+                                        <img  
+                                        {if condition="$vo.pic eq ''"}
+                                                src="__PUBLIC__images/error.png"
+                                        {else /}
+                                                src="{$vo.pic}" 
+                                        {/if}
+                                        style="height: 50px;">
+                                    </td>
+                                    <td align="center">
+                                        <button  type="button" onclick="changeState({$vo.id},this)" 
+                                            {if condition="$vo['state'] eq 0"}
+                                                class="btn btn-default" >未推荐
+                                            {else /} 
+                                                class="btn btn-success" >已推荐
+                                            {/if}
+                                        </button>
+                                    </td>
+
+                                    <td align="center">
+                                        {$vo.time|date="Y-m-d H:i",###}
+                                    </td>
+                                    <td align="center">{$vo->cate->catename}</td>
+                                    <td align="center">
+                                        <a href="{:url('edit',['id'=>$vo.id])}" class="btn btn-primary btn-sm shiny">
+                                            <i class="fa fa-edit"></i> 编辑
+                                        </a>
+                                        <a href="#" onClick='warning("确实要删除吗", "del/id/{$vo.id}")' class="btn btn-danger btn-sm shiny">
+                                            <i class="fa fa-trash-o"></i> 删除
+                                        </a>
+                                    </td>
+                               </tr>
+                            {/volist}
+<script type="text/javascript">
+    //使用ajax修改文章的推荐状态  
+    function changeState(id,e){
+         
+        $.get(
+            "{:url('changeState')}",
+            {'id':id},
+            function(msg){
+                //修改推荐状态成功
+                if(msg==1){
+                    var classes = $(e).attr('class');
+                    if(classes.indexOf("btn-default") == -1)
+                    {
+                        classes=classes.replace('btn-success','btn-default')
+                        $(e).text('未推荐');
+                    }else{
+                        classes=classes.replace('btn-default','btn-success');
+                        $(e).text('已推荐');
+                    }
+                    $(e).attr('class',classes);
+                //失败
+                }else{
+
+                }
+        });
+    }   
+
+
+</script>
+                        </tbody>
+                    </table>
+                    <div style="display: inline-block;float: right;">
+                        {$list->render()}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page  Body -->
+</div>
+
+<script>
+    function addAdmin() {
+       window.location.href = "{:url('article/add')}";
+    }
+
+    
+</script>

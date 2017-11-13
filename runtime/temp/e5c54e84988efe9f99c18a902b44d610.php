@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:62:"E:\php\tp5demo\public/../application/admin\view\admin\add.html";i:1510054730;s:66:"E:\php\tp5demo\public/../application/admin\view\common\layout.html";i:1510053665;s:66:"E:\php\tp5demo\public/../application/admin\view\common\header.html";i:1510041876;s:64:"E:\php\tp5demo\public/../application/admin\view\common\left.html";i:1510050300;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:62:"E:\php\tp5demo\public/../application/admin\view\admin\add.html";i:1510054730;s:66:"E:\php\tp5demo\public/../application/admin\view\common\layout.html";i:1510053665;s:66:"E:\php\tp5demo\public/../application/admin\view\common\header.html";i:1510041876;s:64:"E:\php\tp5demo\public/../application/admin\view\common\left.html";i:1510209256;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -133,6 +133,23 @@
 
         <li>
             <a href="#" class="menu-dropdown">
+                <i class="menu-icon fa fa-link"></i>
+                <span class="menu-text">友情链接</span>
+                <i class="menu-expand"></i>
+            </a>
+            <ul class="submenu">
+                <li>
+                    <a href="<?php echo url('admin/links/index'); ?>">
+                                    <span class="menu-text">
+                                        友情链接列表                                    </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#" class="menu-dropdown">
                 <i class="menu-icon fa fa-gear"></i>
                 <span class="menu-text">系统</span>
                 <i class="menu-expand"></i>
@@ -147,8 +164,6 @@
                 </li>
             </ul>
         </li>
-
-
     </ul>
     <!-- /Sidebar Menu -->
 </div>

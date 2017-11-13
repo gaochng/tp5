@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:64:"E:\php\tp5demo\public/../application/admin\view\admin\index.html";i:1510050660;s:66:"E:\php\tp5demo\public/../application/admin\view\common\layout.html";i:1510053665;s:66:"E:\php\tp5demo\public/../application/admin\view\common\header.html";i:1510041876;s:64:"E:\php\tp5demo\public/../application/admin\view\common\left.html";i:1510050300;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:64:"E:\php\tp5demo\public/../application/admin\view\admin\index.html";i:1510201571;s:66:"E:\php\tp5demo\public/../application/admin\view\common\layout.html";i:1510557503;s:66:"E:\php\tp5demo\public/../application/admin\view\common\header.html";i:1510041876;s:64:"E:\php\tp5demo\public/../application/admin\view\common\left.html";i:1510467257;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -18,8 +18,16 @@
     <link id="beyond-link" href="__PUBLIC__style/beyond.css" rel="stylesheet" type="text/css">
     <link href="__PUBLIC__style/demo.css" rel="stylesheet">
     <link href="__PUBLIC__style/typicons.css" rel="stylesheet">
-    <link href="__PUBLIC__style/animate.css" rel="stylesheet">
+    <link href="__PUBLIC__style/animate.css" rel="stylesheet"> 
+    <link href="__PUBLIC__style/file.css" rel="stylesheet"> 
 
+
+    <!--Basic Scripts-->
+    <script src="__PUBLIC__js/jquery_002.js"></script>
+    <script src="__PUBLIC__js/bootstrap.js"></script>
+    <script src="__PUBLIC__js/jquery.js"></script>
+    <script src="__PLUGIN__ueditor/ueditor.config.js"></script>
+    <script src="__PLUGIN__ueditor/ueditor.all.min.js"></script>
 </head>
 <body>
     <!-- 头部 -->
@@ -116,15 +124,50 @@
 
         <li>
             <a href="#" class="menu-dropdown">
+                <i class="menu-icon fa fa-list"></i>
+                <span class="menu-text">栏目管理</span>
+                <i class="menu-expand"></i>
+            </a>
+            <ul class="submenu">
+                <li>
+                    <a href="<?php echo url('admin/cate/index'); ?>">
+                                    <span class="menu-text">
+                                        栏目列表                                    </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
+        <li>
+            <a href="#" class="menu-dropdown">
                 <i class="menu-icon fa fa-file-text"></i>
                 <span class="menu-text">文档</span>
                 <i class="menu-expand"></i>
             </a>
             <ul class="submenu">
                 <li>
-                    <a href="/admin/document/index.html">
+                    <a href="<?php echo url('admin/article/index'); ?>">
                                     <span class="menu-text">
                                         文章列表                                    </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#" class="menu-dropdown">
+                <i class="menu-icon fa fa-link"></i>
+                <span class="menu-text">友情链接</span>
+                <i class="menu-expand"></i>
+            </a>
+            <ul class="submenu">
+                <li>
+                    <a href="<?php echo url('admin/links/index'); ?>">
+                                    <span class="menu-text">
+                                        友情链接列表                                    </span>
                         <i class="menu-expand"></i>
                     </a>
                 </li>
@@ -147,8 +190,6 @@
                 </li>
             </ul>
         </li>
-
-
     </ul>
     <!-- /Sidebar Menu -->
 </div>
@@ -174,8 +215,8 @@
 <div class="row">
     <div class="col-lg-12 col-sm-12 col-xs-12">
         <div class="widget">
-            <div class="widget-body">
-                <div class="flip-scroll">
+            <div class="widget-body" style="float: left; width: 100%;">
+                <div class="flip-scroll" >
                     <table class="table table-bordered table-hover">
                         <thead class="">
                             <tr>
@@ -185,54 +226,35 @@
                             </tr>
                         </thead>
                         <tbody>
-                                                        <tr>
-                                <td align="center">6</td>
-                                <td align="center">test</td>
-                                <td align="center">
-                                    <a href="/admin/user/edit/id/6.html" class="btn btn-primary btn-sm shiny">
-                                        <i class="fa fa-edit"></i> 编辑
-                                    </a>
-                                    <a href="#" onClick="warning('确实要删除吗', '/admin/user/del/id/6.html')" class="btn btn-danger btn-sm shiny">
-                                        <i class="fa fa-trash-o"></i> 删除
-                                    </a>
-                                </td>
-                            </tr>
-                                                        <tr>
-                                <td align="center">7</td>
-                                <td align="center">aaaaaa</td>
-                                <td align="center">
-                                    <a href="/admin/user/edit/id/7.html" class="btn btn-primary btn-sm shiny">
-                                        <i class="fa fa-edit"></i> 编辑
-                                    </a>
-                                    <a href="#" onClick="warning('确实要删除吗', '/admin/user/del/id/7.html')" class="btn btn-danger btn-sm shiny">
-                                        <i class="fa fa-trash-o"></i> 删除
-                                    </a>
-                                </td>
-                            </tr>
-                                                        <tr>
-                                <td align="center">8</td>
-                                <td align="center">bbb</td>
-                                <td align="center">
-                                    <a href="/admin/user/edit/id/8.html" class="btn btn-primary btn-sm shiny">
-                                        <i class="fa fa-edit"></i> 编辑
-                                    </a>
-                                    <a href="#" onClick="warning('确实要删除吗', '/admin/user/del/id/8.html')" class="btn btn-danger btn-sm shiny">
-                                        <i class="fa fa-trash-o"></i> 删除
-                                    </a>
-                                </td>
-                            </tr>
-                                                    </tbody>
+                            <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                               <tr>
+                                    <td align="center"><?php echo $vo['id']; ?></td>
+                                    <td align="center"><?php echo $vo['username']; ?></td>
+                                    <td align="center">
+                                        <a href="edit/id/<?php echo $vo['id']; ?>"class="btn btn-primary btn-sm shiny">
+                                            <i class="fa fa-edit"></i> 编辑
+                                        </a>
+                                        <a href="#" onClick='warning("确实要删除吗", "del/id/<?php echo $vo['id']; ?>")' class="btn btn-danger btn-sm shiny">
+                                            <i class="fa fa-trash-o"></i> 删除
+                                        </a>
+                                    </td>
+                               </tr>
+                            <?php endforeach; endif; else: echo "" ;endif; ?>
+
+                        </tbody>
                     </table>
+                    <div style="display: inline-block;float: right;">
+                        <?php echo $list->render(); ?>
+                    </div>
                 </div>
-                <div>
-                                    </div>
+
             </div>
         </div>
     </div>
 </div>
 
                 </div>
-                <!-- /Page Body -->
+                <!-- /Page  Body -->
 </div>
 
 <script>
@@ -245,13 +267,29 @@
     </div>
 </div>
 
-<!--Basic Scripts-->
-<script src="__PUBLIC__js/jquery_002.js"></script>
-<script src="__PUBLIC__js/bootstrap.js"></script>
-<script src="__PUBLIC__js/jquery.js"></script>
+
 <!--Beyond Scripts-->
 <script src="__PUBLIC__js/beyond.js"></script>
+<!-- ueditor -->
 
+
+<script type="text/javascript">
+
+
+
+    //文章缩略图,实时显示
+    function showPreview(source){
+        var file = source.files[0];  
+        var fr = new FileReader();  
+        fr.onloadend = function(e) {  
+            document.getElementById("portrait").src = e.target.result;  
+        };  
+        fr.readAsDataURL(file); 
+    }
+
+    
+    
+</script>
 
 </body>
 </html>

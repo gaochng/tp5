@@ -1,6 +1,6 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:64:"E:\php\tp5demo\public/../application/admin\view\index\index.html";i:1510042499;s:66:"E:\php\tp5demo\public/../application/admin\view\common\layout.html";i:1510042499;s:66:"E:\php\tp5demo\public/../application/admin\view\common\header.html";i:1510041876;s:64:"E:\php\tp5demo\public/../application/admin\view\common\left.html";i:1510050300;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:64:"E:\php\tp5demo\public/../application/admin\view\index\index.html";i:1510042499;s:66:"E:\php\tp5demo\public/../application/admin\view\common\layout.html";i:1510475899;s:66:"E:\php\tp5demo\public/../application/admin\view\common\header.html";i:1510041876;s:64:"E:\php\tp5demo\public/../application/admin\view\common\left.html";i:1510467257;}*/ ?>
 <!DOCTYPE html>
-<html>
+<html lang="zh-cn">
 <head>
     <meta charset="utf-8">
     <title>童老师ThinkPHP交流群：484519446</title>
@@ -116,15 +116,50 @@
 
         <li>
             <a href="#" class="menu-dropdown">
+                <i class="menu-icon fa fa-list"></i>
+                <span class="menu-text">栏目管理</span>
+                <i class="menu-expand"></i>
+            </a>
+            <ul class="submenu">
+                <li>
+                    <a href="<?php echo url('admin/cate/index'); ?>">
+                                    <span class="menu-text">
+                                        栏目列表                                    </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
+        <li>
+            <a href="#" class="menu-dropdown">
                 <i class="menu-icon fa fa-file-text"></i>
                 <span class="menu-text">文档</span>
                 <i class="menu-expand"></i>
             </a>
             <ul class="submenu">
                 <li>
-                    <a href="/admin/document/index.html">
+                    <a href="<?php echo url('admin/article/index'); ?>">
                                     <span class="menu-text">
                                         文章列表                                    </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#" class="menu-dropdown">
+                <i class="menu-icon fa fa-link"></i>
+                <span class="menu-text">友情链接</span>
+                <i class="menu-expand"></i>
+            </a>
+            <ul class="submenu">
+                <li>
+                    <a href="<?php echo url('admin/links/index'); ?>">
+                                    <span class="menu-text">
+                                        友情链接列表                                    </span>
                         <i class="menu-expand"></i>
                     </a>
                 </li>
@@ -147,8 +182,6 @@
                 </li>
             </ul>
         </li>
-
-
     </ul>
     <!-- /Sidebar Menu -->
 </div>
@@ -186,7 +219,13 @@
 <script src="__PUBLIC__js/jquery.js"></script>
 <!--Beyond Scripts-->
 <script src="__PUBLIC__js/beyond.js"></script>
+<!-- ueditor -->
 
+<script src="__PLUGIN__ueditor/ueditor.config.js"></script>
+<script src="__PLUGIN__ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    var ue = UE.getEditor('content',{initialFrameWidth:'100%',});
+</script>
 
 </body>
 </html>
